@@ -1,12 +1,18 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const isCI = (
+  globalThis as typeof globalThis & {
+    process?: { env?: Record<string, string | undefined> };
+  }
+).process?.env?.CI;
+
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 1,
-  workers: process.env.CI ? 4 : undefined,
+  forbidOnly: !!isCI,
+  retries: isCI ? 2 : 1,
+  workers: isCI ? 4 : undefined,
   timeout: 60_000,
   use: {
     baseURL: "https://etp-global.org",

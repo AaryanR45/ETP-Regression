@@ -3,12 +3,12 @@ import { pages } from "../pages.js";
 
 for (const target of pages) {
   test(`${target.name} - visual regression`, async ({ page }) => {
-    await page.goto(`https://etp-global.org${target.path}`, {
+    await page.goto(`https://staging2.etp-global.org/${target.path}`, {
       waitUntil: "networkidle",
     });
 
-    // Dismiss the cookie consent banner without opting into tracking.
-    await page.getByRole("button", { name: "Deny", exact: true }).click();
+    // Dismiss the cookie consent banner without opting into tracking. for prod
+    // await page.getByRole("button", { name: "Deny", exact: true }).click();
 
     // Scroll through the page to trigger viewport-based lazy loading.
     await page.evaluate(async () => {
@@ -34,7 +34,7 @@ for (const target of pages) {
 
 
     // Full-page screenshot comparison
-    await expect(page).toHaveScreenshot(
+    await expect(page).toHaveScreenshot(  
       `${target.name.replace(/[^a-zA-Z0-9]/g, "-")}.png`,
       {
         fullPage: true,
