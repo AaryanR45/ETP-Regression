@@ -49,7 +49,7 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Show BASE_URL
-        run: echo "BASE_URL is: $BASE_URL"
+        run: echo "BASE_URL is ${{ env.BASE_URL }}"
 
       - name: Run Playwright Tests
         run: npx playwright test
