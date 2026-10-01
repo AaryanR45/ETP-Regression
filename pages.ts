@@ -6,7 +6,6 @@ export type PageTarget = {
 
 export const pages: PageTarget[] = [
   { path: "/", name: "home-page" },
-  { name: "Search", path: "/search/" },
   { name: "Privacy Policy", path: "/privacy-policy/" },
   { name: "Terms & Conditions", path: "/terms-conditions/" },
   { name: "Where We Work", path: "/where-we-work/" },
@@ -21,7 +20,7 @@ export const pages: PageTarget[] = [
   { name: "Environment", path: "/our-strategy/environment/" },
   { name: "Equality", path: "/our-strategy/equality/" },
   { name: "Economics", path: "/our-strategy/economics/" },
-  { name: "Our Strategy", path: "/our-strategy/" },
+  // { name: "Our Strategy", path: "/our-strategy/" },
   { name: "Contact", path: "/contact/" },
   { name: "FAQs", path: "/faqs/" },
   { name: "Our Programmes", path: "/our-programmes/" },
