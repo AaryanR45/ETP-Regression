@@ -51,11 +51,8 @@ jobs:
       - name: Show BASE_URL
         run: echo "BASE_URL is ${{ env.BASE_URL }}"
 
-      - name: Generate Linux visual baselines
-        run: npx playwright test --update-snapshots
-
-      # - name: Run Playwright tests
-      #   run: npx playwright test
+      - name: Run Playwright tests
+        run: npx playwright test
 
       - name: Upload Snapshots
         if: always()
@@ -75,32 +72,39 @@ jobs:
           retention-days: 30
           if-no-files-found: ignore
 
-      # - name: Notify Slack with Test Results
-      #   if: always()
-      #   uses: slackapi/slack-github-action@v1.27.0
-      #   with:
-      #     payload: |
-      #       {
-      #         "blocks": [
-      #           {
-      #             "type": "section",
-      #             "text": {
-      #               "type": "mrkdwn",
-      #               "text": "*ETP Regression Test Run Complete* :rocket:\n*Repository:* ${{ github.repository }}\n*Branch:* `${{ github.ref_name }}`\n*Status:* *${{ job.status }}*\n*Base URL:* `${{ env.BASE_URL }}`"
-      #             }
-      #           },
-      #           {
-      #             "type": "actions",
-      #             "elements": [
-      #               {
-      #                 "type": "button",
-      #                 "text": {
-      #                   "type": "plain_text",
-      #                   "text": "View Workflow Run"
-      #                 },
-      #                 "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-      #               }
-      #             ]
-      #           }
-      #         ]
-      #       }
+      - name: Notify Slack with Test Results
+        if: always()
+        uses: slackapi/slack-github-action@v1.27.0
+        with:
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*GitHub Actions Test Run Complete*:rocket:\n*Repository:* ${{ github.repository }}\n*Status:* ${{ job.status }}"
+                  }
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*📊 Playwright Test Status*\n*Run status:* ${{ job.status }}\n*Workflow:* ${{ github.workflow }}"
+                  }
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View Workflow Run"
+                      },
+                      "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                    }
+                  ]
+                }
+              ]
+            }
