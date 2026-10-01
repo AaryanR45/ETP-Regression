@@ -8,7 +8,7 @@ for (const target of pages) {
     });
 
     // Dismiss the cookie consent banner without opting into tracking. for prod
-    // await page.getByRole("button", { name: "Deny", exact: true }).click();
+    await page.getByRole("button", { name: "Deny", exact: true }).click();
 
     // Scroll through the page to trigger viewport-based lazy loading.
     await page.evaluate(async () => {

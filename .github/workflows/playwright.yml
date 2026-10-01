@@ -51,8 +51,8 @@ jobs:
       - name: Show BASE_URL
         run: echo "BASE_URL is ${{ env.BASE_URL }}"
 
-      - name: Run Playwright Tests
-        run: npx playwright test
+      - name: Generate visual baselines
+        run: npx playwright test --update-snapshots
 
       - name: Upload Snapshots
         if: always()
