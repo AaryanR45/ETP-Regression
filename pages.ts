@@ -1,8 +1,11 @@
-export const pages = [
+export type PageTarget = {
+  path: string;
+  name: string;
+  maskSelectors?: string[];
+};
+
+export const pages: PageTarget[] = [
   { path: "/", name: "home-page" },
-  { name: "Who We Are", path: "/who-we-are/" },
-  { name: "What We Do", path: "/what-we-do/" },
-  { name: "Who We Work With", path: "/who-we-work-with/" },
   { name: "Search", path: "/search/" },
   { name: "Privacy Policy", path: "/privacy-policy/" },
   { name: "Terms & Conditions", path: "/terms-conditions/" },
@@ -19,9 +22,6 @@ export const pages = [
   { name: "Equality", path: "/our-strategy/equality/" },
   { name: "Economics", path: "/our-strategy/economics/" },
   { name: "Our Strategy", path: "/our-strategy/" },
-  { name: "Annual Reports", path: "/annual-reports/" },
-  { name: "2022 Annual Report", path: "/annual-reports/2022-annual-report/" },
-  { name: "2023 Annual Report", path: "/annual-reports/2023-annual-report/" },
   { name: "Contact", path: "/contact/" },
   { name: "FAQs", path: "/faqs/" },
   { name: "Our Programmes", path: "/our-programmes/" },
@@ -36,9 +36,6 @@ export const pages = [
   { name: "Kenya", path: "/where-we-work/kenya/" },
   { name: "Rwanda", path: "/where-we-work/rwanda/" },
   { name: "Become a Member", path: "/become-a-member/" },
-  { name: "2024 Annual Report", path: "/annual-reports/2024-annual-report/" },
-  { name: "Our Impact", path: "/our-impact/" },
-  { name: "2025 Annual Report", path: "/annual-reports/2025-annual-report/" },
   { name: "Resources", path: "/resources/" },
   { name: "Membership", path: "/membership/" },
   { name: "How to Become a Member", path: "/how-to-become-a-member/" },
