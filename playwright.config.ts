@@ -11,13 +11,7 @@ export default defineConfig({
   workers: isCI ? undefined : 4,
   timeout: 60_000,
   use: {
-    // baseURL: "https://etp-global.org",
-
-    viewport: {
-      width: 1440,
-      height: 900,
-    },
-
+    baseURL: process.env.SITE_URL || "https://staging2.etp-global.org/",
     screenshot: "only-on-failure",
     trace: "on-first-retry",
   },

@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       base_url:
-        description: "Base URL to test against"
+        description: "SITE_URL"
         required: false
         default: "https://staging2.etp-global.org/"
 
@@ -19,11 +19,12 @@ concurrency:
 
 jobs:
   test:
+    if: github.event_name != 'push' || contains(github.event.head_commit.message, 'run cli')
     timeout-minutes: 60
     runs-on: ubuntu-latest
 
     env:
-      BASE_URL: ${{ inputs.base_url || 'https://staging2.etp-global.org/' }}
+      SITE_URL: ${{ github.event.inputs.site_url}}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
 
@@ -48,8 +49,8 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Show BASE_URL
-        run: echo "BASE_URL is ${{ env.BASE_URL }}"
+      - name: Show SITE_URL
+        run: echo "SITE_URL is ${{ env.SITE_URL }}"
 
       - name: Run Playwright tests
         run: npx playwright test

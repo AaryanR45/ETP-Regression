@@ -7,7 +7,7 @@ import {
 
 for (const target of pages) {
   test(`${target.name} - visual regression`, async ({ page }) => {
-    await page.goto(`https://staging2.etp-global.org/${target.path}`, {
+    await page.goto(target.path, {
       waitUntil: "networkidle",
     });
 
